@@ -5,14 +5,14 @@ import feedparser
 import smtplib
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
+import loginfo.creds as Secrets
 
-
-fromEmail = "cprompt@triad.rr.com"
-toEmail = "3363379174@vtext.com"
-emailLogin = "cprompt@triad.rr.com"
-emailPass = "Philter69"
-emailServer = "mail.twc.com"
-emailPort = "587"
+fromEmail = Secrets.login['fromEmail']
+toEmail = Secrets.login['toEmail']
+emailLogin = Secrets.login['emailLogin']
+emailPass = Secrets.login['emailPass']
+emailServer = Secrets.login['emailServer']
+emailPort = Secrets.login['emailPort']
 
 url = "https://www.demonoid.pw/rss/users/smcgill1969.xml"
 
