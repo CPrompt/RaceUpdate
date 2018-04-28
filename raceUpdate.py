@@ -3,6 +3,7 @@
 import json
 import feedparser
 import smtplib
+import os
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
 import loginfo.creds as Secrets
@@ -15,6 +16,11 @@ emailServer = Secrets.login['emailServer']
 emailPort = Secrets.login['emailPort']
 
 url = "https://www.demonoid.pw/rss/users/smcgill1969.xml"
+dir_path = os.path.dirname(os.path.realpath(__file__))
+feedData = dir_path + "/config.json"
+
+noUpdate = "No"
+yesUpdate = "Yes"
 
 d = feedparser.parse(url)
 title = d.feed.title
@@ -25,7 +31,8 @@ updated_parsed = d.feed.updated_parsed
 entry_title = d.entries[0].title
 entry_published = d.entries[0].updated
 
-feedData = "/home/curtis/Scripts/RaceUpdate/config.json"
+
+#feedData = "/home/curtis/Programming/git/RaceUpdate/config.json"
 
 #print(title)
 #print(entry_title)
@@ -90,6 +97,6 @@ if __name__ == "__main__":
         updateJsonFile("time",entry_published)
         send_email("New upload",entry_title)
     else:
-        updateJsonFile("time",entry_published)
+        updateJsonFile("newUpdate",noUpdate)
 
     #print(output_config()["time"])
