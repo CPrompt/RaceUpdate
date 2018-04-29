@@ -93,6 +93,8 @@ if __name__ == "__main__":
 
     if(jsonTime != entry_published):
         print("Time has changed.  Updating...")
+        print(entry_title)
+        print(time)
         updateJsonFile("title",entry_title)
         updateJsonFile("time",entry_published)
         send_email("New upload",entry_title)
