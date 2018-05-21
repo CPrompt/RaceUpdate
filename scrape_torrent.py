@@ -26,12 +26,23 @@ from read_json import *
 
 def scrape_torrent():
     current_directory = os.path.dirname(os.path.realpath(__file__))
+<<<<<<< HEAD
 
     try:
         link_request = output_config()["torrent_link"]
         entry_title = output_config()["title"]
 
 #page = Request("https://www.demonoid.pw/genlb.php?genid=eHVXVTdMaVovL2VMc0tNOFBRRFRhQT09", headers={'User-Agent': 'Mozilla5/0'})
+=======
+    rename_file = os.path.join(current_directory,"*.html*")
+
+    print(current_directory)
+
+    try:
+        link_request = output_config()["torrent_link"]
+
+        entry_title = output_config()["title"]
+>>>>>>> download_torrent
 
         page = Request(link_request, headers={'User-Agent': 'Mozilla5/0'})
 
@@ -43,6 +54,7 @@ def scrape_torrent():
 
         for a in soup.find_all("a",attrs={"href": re.compile("hypercache")}):
             torrent_file = a['href']
+<<<<<<< HEAD
             print("Found URL: ", torrent_file)
 
             subprocess.run(["wget",torrent_file])
@@ -51,6 +63,16 @@ def scrape_torrent():
             print(filename)
             new_name = entry_title + ".torrent"
             os.rename(filename,new_name)
+=======
+            #print("Found URL: ", torrent_file)
+            subprocess.run(["wget",torrent_file])
+        
+        for filename in glob.glob(rename_file):
+            #print(filename)
+            new_name = entry_title + ".torrent"
+            os.rename(filename,new_name)
+       
+>>>>>>> download_torrent
     except:
         print("ERROR!")
 
