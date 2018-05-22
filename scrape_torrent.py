@@ -54,7 +54,7 @@ def scrape_torrent():
             torrent_file = a['href']
             print("Found URL: ", torrent_file)
 
-            subprocess.run(["wget",torrent_file])
+            subprocess.call(["wget",torrent_file])
 
         for filename in glob.glob(rename_file):
             #print(filename)
