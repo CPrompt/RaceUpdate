@@ -33,6 +33,9 @@ def scrape_torrent():
         watch_directory = output_config()["watch_directory"]
         entry_title = output_config()["title"]
 
+        # need to find the first part of the Title to determine where to move the file
+
+
         page = Request(link_request, headers={'User-Agent': 'Mozilla5/0'})
 
         webpage = urlopen(page).read()
@@ -51,7 +54,7 @@ def scrape_torrent():
             #print(filename)
             new_name = entry_title + ".torrent"
             os.rename(filename,new_name)
-            shutil.move(new_name,"/home/curtis/Desktop/")
+            shutil.move(new_name,watch_directory)
        
     except:
         print("ERROR!")

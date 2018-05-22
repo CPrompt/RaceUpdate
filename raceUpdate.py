@@ -41,7 +41,8 @@ if __name__ == "__main__":
     jsonTime = output_config()["time"]
     print("------------------")
     print(entry_link)
-    
+
+    # does the time match?
     if(jsonTime != entry_published):
         print("Time has changed.  Updating...")
         print(entry_title)
