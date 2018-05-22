@@ -25,6 +25,11 @@ entry_title = d.entries[0].title
 entry_published = d.entries[0].updated
 entry_link = d.entries[0].link
 
+# vars to only find Races that are SD
+# I don't need the HD or the Qualifying rounds
+race_list = ['SD','Race']
+jsonTime = output_config()["time"]
+
 def updateJsonFile(json_key,json_value):
     jsonFile = open(feedData,"r")
     data = json.load(jsonFile)
@@ -38,19 +43,25 @@ def updateJsonFile(json_key,json_value):
     jsonFile.close
 
 if __name__ == "__main__":
-    jsonTime = output_config()["time"]
-    print("------------------")
-    print(entry_link)
 
     # does the time match?
     if(jsonTime != entry_published):
+
         print("Time has changed.  Updating...")
         print(entry_title)
         updateJsonFile("title",entry_title)
         updateJsonFile("time",entry_published)
         updateJsonFile("newUpdate",yesUpdate)
         updateJsonFile("torrent_link",entry_link)
-        send_email("New Race",entry_title)
-        scrape_torrent()
+
+        # right here we need to check if this is just the SD version of the race only!
+        if all(x in entry_title for x in race_list):
+            print("Match!")
+            send_email("New Race", entry_title)
+            scrape_torrent()
+        else:
+            print("No match")
+
     else:
         updateJsonFile("newUpdate",noUpdate)
+

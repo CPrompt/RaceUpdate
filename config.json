@@ -3,5 +3,5 @@
     "time": "time",
     "title": "title",
     "torrent_link": "link",
-	"watch_directory": "/my/watch/directory"
+	"watch_directory_base": "/rtorrent/watch/directory/base"
 }
