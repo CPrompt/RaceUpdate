@@ -22,7 +22,7 @@ import os
 import subprocess
 import glob
 from read_json import *
-
+import shutil
 
 def scrape_torrent():
     current_directory = os.path.dirname(os.path.realpath(__file__))
@@ -30,7 +30,7 @@ def scrape_torrent():
 
     try:
         link_request = output_config()["torrent_link"]
-
+        watch_directory = output_config()["watch_directory"]
         entry_title = output_config()["title"]
 
         page = Request(link_request, headers={'User-Agent': 'Mozilla5/0'})
@@ -51,6 +51,7 @@ def scrape_torrent():
             #print(filename)
             new_name = entry_title + ".torrent"
             os.rename(filename,new_name)
+            shutil.move(new_name,"/home/curtis/Desktop/")
        
     except:
         print("ERROR!")
