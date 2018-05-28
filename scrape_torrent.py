@@ -31,8 +31,6 @@ def check_raceType(race_title):
     return race_type
 
 
-
-
 def scrape_torrent():
     current_directory = os.path.dirname(os.path.realpath(__file__))
     rename_file = os.path.join(current_directory,"*.html*")
@@ -54,19 +52,7 @@ def scrape_torrent():
             torrent_file = a['href']
             print("Found URL: ", torrent_file)
 
-            subprocess.call(["wget",torrent_file])
-
-        for filename in glob.glob(rename_file):
-            #print(filename)
-            new_name = entry_title + ".torrent"
-            os.rename(filename,new_name)
-
-            # need to find the first part of the Title to determine where to move the file
-            race_config_title = output_config()["title"]
-            print(check_raceType(race_config_title))
-            #race_type = race_title.split(' ',1)[0]
-            #print(race_type)
-             
+            # what kind of race is it?
             if(check_raceType(entry_title) == "MotoGP"):
                 watch_dir = os.path.join(watch_directory_base,"motogp")
                 print(watch_dir)
@@ -74,8 +60,9 @@ def scrape_torrent():
                 watch_dir = os.path.join(watch_directory_base,"formula1")
                 print(watch_dir)
 
-            shutil.move(new_name,watch_dir)
-            
+            new_name = entry_title + ".torrent"
+            print(new_name)
+            subprocess.call(["wget",torrent_file,'-O', os.path.join(watch_dir,new_name)])
 
     except:
         print("ERROR!")
