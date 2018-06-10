@@ -4,13 +4,13 @@ import os
 import json
 import feedparser
 
-from send_email import send_email
-from read_json import *
-from scrape_torrent import scrape_torrent
+from raceupdate.send_email import send_email
+from raceupdate.read_json import *
+from raceupdate.scrape_torrent import scrape_torrent
 
 url = "https://www.demonoid.pw/rss/users/smcgill1969.xml"
 dir_path = os.path.dirname(os.path.realpath(__file__))
-feedData = dir_path + "/config.json"
+feedData = dir_path + "/static/config.json"
 
 noUpdate = "No"
 yesUpdate = "Yes"
@@ -42,8 +42,8 @@ def updateJsonFile(json_key,json_value):
     jsonFile.write(json.dumps(data,indent=4,sort_keys=True))
     jsonFile.close
 
-if __name__ == "__main__":
 
+def main():
     # does the time match?
     if(jsonTime != entry_published):
 
@@ -65,3 +65,5 @@ if __name__ == "__main__":
     else:
         updateJsonFile("newUpdate",noUpdate)
 
+if __name__ == "__main__":
+    main()

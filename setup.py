@@ -8,8 +8,13 @@ setup(name='raceupdate',
         author='CPrompt',
         author_email='cprompt@triad.rr.com',
         license='GPL',
-        packages=['raceupdate'],
+        packages=['raceupdate','raceupdate.loginfo','raceupdate.static'],
+        package_data={'raceupdate.static':['*']},
         zip_safe=False,
-        scripts=['raceupdate.py']
+        entry_points={
+            'console_scripts':[
+                'raceupdate = raceupdate.raceupdate:main',
+                ]
+            }
         )
 

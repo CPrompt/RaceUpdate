@@ -3,7 +3,7 @@ import os
 import json
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
-feedData = dir_path + "/config.json"
+feedData = dir_path + "/static/config.json"
 
 
 def read_json(myFeed):

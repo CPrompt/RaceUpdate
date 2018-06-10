@@ -21,7 +21,7 @@ import wget
 import os
 import subprocess
 import glob
-from read_json import *
+from raceupdate.read_json import *
 import shutil
 
 

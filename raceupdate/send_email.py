@@ -3,8 +3,8 @@
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-import loginfo.creds as Secrets
-from read_json import *
+import raceupdate.loginfo.creds as Secrets
+from raceupdate.read_json import *
 
 fromEmail = Secrets.login['fromEmail']
 toEmail = Secrets.login['toEmail']
