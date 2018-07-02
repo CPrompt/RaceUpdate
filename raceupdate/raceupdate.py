@@ -5,12 +5,13 @@ import json
 import feedparser
 
 from raceupdate.send_email import send_email
-from raceupdate.read_json import *
+from raceupdate.read_json import output_config
 from raceupdate.scrape_torrent import scrape_torrent
 
 url = "https://www.demonoid.pw/rss/users/smcgill1969.xml"
-dir_path = os.path.dirname(os.path.realpath(__file__))
-feedData = dir_path + "/static/config.json"
+#dir_path = os.path.dirname(os.path.realpath(__file__))
+#feedData = dir_path + "/static/config.json"
+feedData = os.path.expanduser(os.path.join("~/.config/raceupdate/static/","config.json"))
 
 noUpdate = "No"
 yesUpdate = "Yes"

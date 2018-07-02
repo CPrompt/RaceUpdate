@@ -2,9 +2,9 @@
 import os
 import json
 
-dir_path = os.path.dirname(os.path.realpath(__file__))
-feedData = dir_path + "/static/config.json"
-
+#dir_path = os.path.dirname(os.path.realpath(__file__))
+#feedData = dir_path + "/static/config.json"
+feedData = os.path.expanduser(os.path.join("~/.config/raceupdate/static/","config.json"))
 
 def read_json(myFeed):
     try:
