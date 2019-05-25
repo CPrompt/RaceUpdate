@@ -1,5 +1,8 @@
 # RaceUpdate
 
+# Script has been replaced by "check_races" found here:
+https://github.com/CPrompt/check_races
+
 This started off as a real simple python script that looks at the RSS feed for SMcGill1969
 and send a text message if there is an update.  Since then, I have added  a lot of components.
 
